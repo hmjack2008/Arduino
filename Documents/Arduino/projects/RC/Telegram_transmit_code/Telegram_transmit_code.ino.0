@@ -1,0 +1,46 @@
+/*
+* Connect the receiver to digital pin 2.
+* Connect the transmitter to digital pin 11.
+*/
+#include <RemoteSwitch.h>
+
+int tranPin = 11;
+int tranPeriod = 128; //uSec
+int tranRepeat = 4;
+// Array of size 12 = 8-address and 4-data.
+// "tranTrits[]" should be either 0, 1 or 2, where 2 indicaties "float"
+unsigned short tranTrits[12] = {2,2,2,2,2,2,2,2,  0,1,0,1};
+RemoteSwitch Transmitter(tranPin, tranPeriod, tranRepeat);
+  
+int LED = 13;
+
+void setup() {
+  Serial.begin(115200);
+  delay(8000);
+  Serial.println("ready");
+  pinMode(LED, OUTPUT);
+}
+
+int LEDstatus = HIGH;
+unsigned short i = 0;
+
+void loop() {
+  
+  tranTrits[11] = (i & 0x01);
+  tranTrits[10] = (i >> 1) & 0x01;
+  tranTrits[9]  = (i >> 2) & 0x01;
+  tranTrits[8]  = (i >> 3) & 0x01;
+  if (i<16) {i++;} else {i=0;}
+  
+  for (int j; j<12; j++)
+    Serial.print(tranTrits[j]);
+  Serial.println(" ");
+
+  Transmitter.sendTelegram(tranTrits);
+  
+  
+  digitalWrite(LED, LEDstatus);
+  LEDstatus = !LEDstatus;
+  delay(2000);
+}
+
