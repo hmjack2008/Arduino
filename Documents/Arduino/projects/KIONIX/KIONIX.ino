@@ -3,25 +3,16 @@
 
 
 
-
-
 ==============================================
 
+KIONIX_KXCJ9-1008 
 
-Example1:
-if you read @OUT_ADC_3_L(0x0C) and OUT_ADC_3_H(0x0D):
-0xF931 means: 0xF9 = 0b11111001 = -7 (remember: two's complement representation:11111001=>00000110+1=00000111=7)
--7(digit) / 1(digit/degrCelsius) = -7 (degrCelsius)
- 
+http://zh-cn.kionix.com/downloads
 
-Example 2:
-0x0600 means : 0x06 = 6 decimal
-6(digit) / 1(digit/degrCelsius) = 6 (degrCelsius)
-If you run another read you can have temperature difference.
-If you read 0xFA13:  0xFA = -5 degrCelsius
+http://firewall.kionix.com/application-notes
+AN028 Getting Started with the KXCJ9.pdf
 
-Final - Initial Temps: (-5) - 6 = -11 degrCelsius 
-temperature decreased by 11 degrCelsius
+
 ==============================================
 
 
