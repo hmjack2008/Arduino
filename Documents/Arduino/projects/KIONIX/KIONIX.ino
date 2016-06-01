@@ -1,7 +1,7 @@
 /*
     Measurement of acceleration values using motion sensor KIONIX_KXCJ9-1008 
 
-
+TTTTTTTTTTT
 
 ==============================================
 
