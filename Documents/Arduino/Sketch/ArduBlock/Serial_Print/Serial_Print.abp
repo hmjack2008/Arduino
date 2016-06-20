@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cb:CODEBLOCKS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://education.mit.edu/openblocks/ns http://education.mit.edu/openblocks/codeblocks.xsd" xmlns:cb="http://education.mit.edu/openblocks/ns">
+<Pages collapsible-pages="yes" drawer-with-page="yes">
+<Page page-color="128 128 128" page-drawer="Main" page-infullview="yes" page-name="Main" page-width="1920">
+<PageBlocks>
+<Block genus-name="delay" id="413">
+<Location>
+<X>129</X>
+<Y>193</Y>
+</Location>
+<BeforeBlockId>410</BeforeBlockId>
+<Sockets num-sockets="1">
+<BlockConnector con-block-id="414" connector-kind="socket" connector-type="number" init-type="number" label="毫秒" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="number" id="414">
+<Label>1000</Label>
+<Location>
+<X>265</X>
+<Y>196</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="413" connector-kind="plug" connector-type="number" init-type="number" label="" position-type="mirror"/>
+</Plug>
+</Block>
+<Block genus-name="serial_print" id="410">
+<Location>
+<X>129</X>
+<Y>139</Y>
+</Location>
+<BeforeBlockId>406</BeforeBlockId>
+<AfterBlockId>413</AfterBlockId>
+<Sockets num-sockets="2">
+<BlockConnector con-block-id="411" connector-kind="socket" connector-type="string" init-type="string" label="消息" position-type="single"/>
+<BlockConnector con-block-id="412" connector-kind="socket" connector-type="boolean" init-type="boolean" label="新行" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="true" id="412">
+<Label>true</Label>
+<Location>
+<X>233</X>
+<Y>166</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="410" connector-kind="plug" connector-type="boolean" init-type="boolean" label="" position-type="mirror"/>
+</Plug>
+</Block>
+<Block genus-name="message" id="411">
+<Label>Serial Print 0</Label>
+<Location>
+<X>233</X>
+<Y>142</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="410" connector-kind="plug" connector-type="string" init-type="string" label="" position-type="single"/>
+</Plug>
+<Sockets num-sockets="1">
+<BlockConnector connector-kind="socket" connector-type="string" init-type="string" label="" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="program" id="406">
+<Location>
+<X>29</X>
+<Y>66</Y>
+</Location>
+<Sockets num-sockets="2">
+<BlockConnector con-block-id="407" connector-kind="socket" connector-type="cmd" init-type="cmd" label="设定" position-type="single"/>
+<BlockConnector con-block-id="410" connector-kind="socket" connector-type="cmd" init-type="cmd" label="loop" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="serial_print" id="407">
+<Location>
+<X>130</X>
+<Y>74</Y>
+</Location>
+<BeforeBlockId>406</BeforeBlockId>
+<Sockets num-sockets="2">
+<BlockConnector con-block-id="408" connector-kind="socket" connector-type="string" init-type="string" label="消息" position-type="single"/>
+<BlockConnector con-block-id="409" connector-kind="socket" connector-type="boolean" init-type="boolean" label="新行" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="true" id="409">
+<Label>true</Label>
+<Location>
+<X>234</X>
+<Y>101</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="407" connector-kind="plug" connector-type="boolean" init-type="boolean" label="" position-type="mirror"/>
+</Plug>
+</Block>
+<Block genus-name="message" id="408">
+<Label>-- Serial Print --</Label>
+<Location>
+<X>234</X>
+<Y>77</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="407" connector-kind="plug" connector-type="string" init-type="string" label="" position-type="single"/>
+</Plug>
+<Sockets num-sockets="1">
+<BlockConnector connector-kind="socket" connector-type="string" init-type="string" label="" position-type="single"/>
+</Sockets>
+</Block>
+</PageBlocks>
+</Page>
+</Pages>
+</cb:CODEBLOCKS>
