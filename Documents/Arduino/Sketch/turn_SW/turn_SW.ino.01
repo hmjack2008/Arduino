@@ -1,0 +1,47 @@
+//
+// http://www.cnblogs.com/conexpress/p/4984802.html
+//
+/*
+  旋转：CLK(红）+GND（黑），每旋转一次（和方向无关），
+  电平转换一次，DT（红）+GND（黑），变化情况和上一种情况一致，
+  并且CLK和DT的电平保持一致。
+  VCC（红）+CLK（黑），VCC（红）+DT（黑）也是同样的情况。
+  CLK（红）+DT（黑）或者CLK（黑）+DT（红）时，
+  每次旋转（和方向无关）指针都会轻微摆动然后归零，
+  并且相邻两步指针的摆动方向相反。
+  结论：每次旋转CLK和DAT引脚的电平都会变化，
+  电平变化有时间差，但无法区分往哪个方向旋转。
+  编写测试代码，在按下按钮的时候读取CLK和DT的值：
+  
+  测试发现不管顺时针还是逆时针旋转，
+  每次按下按钮之后读取的CLK和DT的值都是一样的，
+  并且相邻两步之间的值是不一样的，
+  符合用万用表测量的结果。
+*/
+//定义引脚连接
+int CLK = 2;//CLK->D2
+int DT = 3;//DT->D3
+int SW = 4;//SW->D4
+ 
+void setup()
+{
+  pinMode(SW, INPUT);
+  digitalWrite(SW, HIGH);//连接按钮的引脚设为上拉
+  pinMode(CLK, INPUT);
+  pinMode(DT, INPUT);
+  Serial.begin(9600);
+}
+ 
+void loop()
+{
+  if (!digitalRead(SW)) //读取到按钮按下时读取CLK和DT的值
+  {
+    int clkValue = digitalRead(CLK);//读取CLK引脚的电平
+    int dtValue = digitalRead(DT);//读取DT引脚的电平
+    Serial.print("CLK:");
+    Serial.print(clkValue);
+    Serial.print("; DT:");
+    Serial.println(dtValue);
+    delay(1000);
+  }
+}

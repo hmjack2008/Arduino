@@ -1,0 +1,30 @@
+
+int PWMs[] = {PB4, PB5};
+int iPWM = 2;
+int iDuty = 0;
+int iCount = 0;
+
+void setup() {
+  Serial.begin(9600);
+  
+  afio_remap(AFIO_REMAP_TIM3_FULL);
+  for (int iCount=0; iCount<iPWM; iCount++) {
+    gpio_set_mode(PIN_MAP[PWMs[iCount]].gpio_device, PIN_MAP[PWMs[iCount]].gpio_bit, GPIO_AF_OUTPUT_PP);
+  }
+  afio_remap(AFIO_REMAP_TIM3_FULL);
+
+}
+
+void loop() {
+  Serial.println(iDuty);
+  for (int iCount=0; iCount<iPWM; iCount++) {
+    pwmWrite(PWMs[iCount], iDuty);
+  }
+
+  iDuty = iDuty + 5;
+  if (iDuty>255) {
+    iDuty = 0;
+  }
+  
+  delay(500);
+}

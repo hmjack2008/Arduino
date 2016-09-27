@@ -1,0 +1,36 @@
+//
+// http://www.cnblogs.com/conexpress/p/4984802.html
+//
+/*
+  万用表测量时发现CLK和DT的变化有一定的时间差，
+  可以用Arduino在CLK电平变化的瞬间读取DT的值，
+  可能会找到其中的规律。
+  改成通过中断0监控CLK上的电平变化，读取CLK和DT的电平值：
+*/
+//定义引脚连接
+int CLK = 2;//CLK->D2
+int DT = 3;//DT->D3
+const int interrupt0 = 0;// Interrupt 0 在 pin 2 上
+ 
+void setup()
+{
+  pinMode(CLK, INPUT);
+  pinMode(DT, INPUT);
+  attachInterrupt(interrupt0, ClockChanged, CHANGE);//设置中断0的处理函数，电平变化触发
+  Serial.begin(9600);
+}
+ 
+void loop()
+{
+}
+ 
+//中断处理函数
+void ClockChanged()
+{
+  int clkValue = digitalRead(CLK);//读取CLK引脚的电平
+  int dtValue = digitalRead(DT);//读取DT引脚的电平
+  Serial.print("CLK:");
+  Serial.print(clkValue);
+  Serial.print("; DT:");
+  Serial.println(dtValue);
+}

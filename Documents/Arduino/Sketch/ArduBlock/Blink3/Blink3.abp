@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cb:CODEBLOCKS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://education.mit.edu/openblocks/ns http://education.mit.edu/openblocks/codeblocks.xsd" xmlns:cb="http://education.mit.edu/openblocks/ns">
+<Pages collapsible-pages="yes" drawer-with-page="yes">
+<Page page-color="128 128 128" page-drawer="Main" page-infullview="yes" page-name="Main" page-width="1920">
+<PageBlocks>
+<Block genus-name="pin-write-digital" id="414">
+<Location>
+<X>227</X>
+<Y>129</Y>
+</Location>
+<BeforeBlockId>410</BeforeBlockId>
+<Sockets num-sockets="2">
+<BlockConnector con-block-id="415" connector-kind="socket" connector-type="number" init-type="number" label="#" position-type="single"/>
+<BlockConnector con-block-id="416" connector-kind="socket" connector-type="boolean" init-type="boolean" label="" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="digital-low" id="416">
+<Location>
+<X>355</X>
+<Y>156</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="414" connector-kind="plug" connector-type="boolean" init-type="boolean" label="" position-type="mirror"/>
+</Plug>
+</Block>
+<Block genus-name="DuinoEDU_D13" id="415">
+<Location>
+<X>355</X>
+<Y>132</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="414" connector-kind="plug" connector-type="number" init-type="number" label="" position-type="single"/>
+</Plug>
+</Block>
+<Block genus-name="pin-write-digital" id="411">
+<Location>
+<X>228</X>
+<Y>64</Y>
+</Location>
+<BeforeBlockId>410</BeforeBlockId>
+<Sockets num-sockets="2">
+<BlockConnector con-block-id="412" connector-kind="socket" connector-type="number" init-type="number" label="#" position-type="single"/>
+<BlockConnector con-block-id="413" connector-kind="socket" connector-type="boolean" init-type="boolean" label="" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="digital-high" id="413">
+<Label>HIGH</Label>
+<Location>
+<X>356</X>
+<Y>91</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="411" connector-kind="plug" connector-type="boolean" init-type="boolean" label="" position-type="mirror"/>
+</Plug>
+</Block>
+<Block genus-name="DuinoEDU_D13" id="412">
+<Location>
+<X>356</X>
+<Y>67</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="411" connector-kind="plug" connector-type="number" init-type="number" label="" position-type="single"/>
+</Plug>
+</Block>
+<Block genus-name="ifelse" id="410">
+<Location>
+<X>97</X>
+<Y>32</Y>
+</Location>
+<BeforeBlockId>407</BeforeBlockId>
+<Sockets num-sockets="3">
+<BlockConnector con-block-id="408" connector-kind="socket" connector-type="boolean" init-type="boolean" label="条件满足" position-type="single"/>
+<BlockConnector con-block-id="411" connector-kind="socket" connector-type="cmd" init-type="cmd" label="执行" position-type="single"/>
+<BlockConnector con-block-id="414" connector-kind="socket" connector-type="cmd" init-type="cmd" label="否则执行" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="pin-read-digital" id="408">
+<Location>
+<X>231</X>
+<Y>35</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="410" connector-kind="plug" connector-type="boolean" init-type="boolean" label="" position-type="single"/>
+</Plug>
+<Sockets num-sockets="1">
+<BlockConnector con-block-id="409" connector-kind="socket" connector-type="number" init-type="number" label="#" position-type="single"/>
+</Sockets>
+</Block>
+<Block genus-name="DuinoEDU_D3" id="409">
+<Location>
+<X>325</X>
+<Y>35</Y>
+</Location>
+<Plug>
+<BlockConnector con-block-id="408" connector-kind="plug" connector-type="number" init-type="number" label="" position-type="single"/>
+</Plug>
+</Block>
+<Block genus-name="loop" id="407">
+<Location>
+<X>8</X>
+<Y>24</Y>
+</Location>
+<Sockets num-sockets="1">
+<BlockConnector con-block-id="410" connector-kind="socket" connector-type="cmd" init-type="cmd" label="执行" position-type="single"/>
+</Sockets>
+</Block>
+</PageBlocks>
+</Page>
+</Pages>
+</cb:CODEBLOCKS>

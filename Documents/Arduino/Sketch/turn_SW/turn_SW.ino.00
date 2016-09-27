@@ -1,0 +1,44 @@
+//
+// http://www.cnblogs.com/conexpress/p/4984802.html
+//
+/*
+  旋转编码器模块有5个引脚，分别是VCC, GND, SW, CLK, DT。
+  其中VCC和GND用来接电源和地，按缩写
+  SW应该是Switch（开关）、
+  CLK是Clock（时钟）、
+  DT是Data（数据）。
+  
+  网上的资料虽然代码不是很理想，但介绍的原理基本是没问题的。
+  旋转编码器的操作是旋转和按压转轴，在按下转轴的时候SW引脚的电平会变化，
+  旋转的时候每转动一步CLK和DT的电平是有规律的变化。
+  在只接电源的情况下先测一下各种操作时引脚电平的变化，
+  没有示波器只好用万用表测电压。
+  点击：SW（红）+GND（黑）时按下和松开按钮没有任何变化，
+  VCC（红）+SW（黑）松开时表针指向0，按下时高电平。
+  据此可以推测SW平时为高阻态，按下时接地。
+  用Arduino检测的方法是设置连接SW的引脚为INPUT并上拉输出高电平，
+  检测到引脚为低电平则表示按钮按下，以下代码可以正确检测出按钮的变化。
+*/
+//定义引脚连接
+
+//定义引脚连接
+int SW= 4;  // SW->D4
+bool lastButtonStatus = false;
+ 
+void setup()
+{
+  pinMode(SW, INPUT);
+  digitalWrite(SW, HIGH);//连接按钮的引脚设为上拉
+  Serial.begin(9600);
+}
+ 
+void loop()
+{
+  bool buttonStatus = !digitalRead(SW);//高电平时未按下，状态为false
+  if (buttonStatus != lastButtonStatus)
+  {
+    Serial.println(buttonStatus ? "pressed" : "released");
+    lastButtonStatus = buttonStatus;//保存当前状态
+  }
+  delay(100);
+}

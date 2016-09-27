@@ -1,0 +1,67 @@
+/* 
+ *  The program refer from http://www.geek-workshop.com/thread-287-1-1.html
+ */  
+
+#include "Wire.h"
+
+/*
+ * xiao_e1 : http://www.kaifakuai.com/kfkdev/Downloatd2.html
+ * 
+ * jumper assignment  ( ":" is open, "|" is short)
+ *  Audio4 RGB3 BARO2 OLED1
+ *  ::::   |::   ||    ||
+ * 
+ */
+int pinLED = PB15; // GPIO12 for xiao_e1 ESP8266 LED-Red
+int xiao_e_SDA = PB9; // GPIO02 for xiao_e1 ESP8266 I2C-SDA
+int xiao_e_SCL = PB8; // GPIO14 for xiao_e1 ESP8266 I2C-SCL
+
+
+byte start_address = 1; // scan I2C device from 0x01
+byte end_address = 127; // scan I2C device end to 0xFF
+
+void scanI2CBus(byte from_addr, byte to_addr) 
+{
+  byte rc;
+  byte data = 0; // not used, just an address to feed to twi_writeTo()
+  for( byte addr = from_addr; addr <= to_addr; addr++ ) {
+    rc = twi_writeTo(addr,&data,0,1); // for xiao_e1 ESP8266
+    if(rc==0) {
+      Serial.print("addr: ");
+      Serial.print(addr,DEC);
+      Serial.print("\t HEX: 0x");
+      Serial.print(addr,HEX);
+      Serial.println("\t found!");
+    }
+  }
+}
+
+void setup()
+{
+    pinMode(pinLED,OUTPUT);
+    Wire.begin(xiao_e_SDA, xiao_e_SCL);
+
+    Serial.begin(9600);
+    delay(5000);
+
+    Serial.println("--- I2C Bus Scanner Test ---");
+    Serial.print("starting scanning of I2C bus from ");
+    Serial.print(start_address,DEC);
+    Serial.print(" to ");
+    Serial.print(end_address,DEC);
+    Serial.println("...");
+    Serial.println();
+
+    scanI2CBus( start_address, end_address );
+
+    Serial.println("--- I2C Bus Scanner Complete ---");
+}
+
+void loop() 
+{
+  digitalWrite(pinLED,HIGH); 
+  delay(1000); 
+  digitalWrite(pinLED,LOW); 
+  delay(1000);
+}
+

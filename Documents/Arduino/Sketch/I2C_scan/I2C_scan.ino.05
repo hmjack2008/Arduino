@@ -1,0 +1,68 @@
+//Below program comes from http://www.geek-workshop.com/thread-287-1-1.html
+
+#include "Wire.h"
+/*
+extern "C" {
+#include "utility/twi.h"  // from Wire library, so we can do bus scanning
+}
+*/
+
+byte start_address = 1;
+byte end_address = 127;
+// int pinLED = 13; // for Arduino ATmega
+int pinLED = 12; // for xiao_e1 ESP8266
+
+void scanI2CBus(byte from_addr, byte to_addr) 
+{
+  byte rc;
+  byte data = 0; // not used, just an address to feed to twi_writeTo()
+  for( byte addr = from_addr; addr <= to_addr; addr++ ) {
+    rc = twi_writeTo(addr,&data,0,1); // for xiao_e1 ESP8266
+    // rc = twi_writeTo(addr,&data,0,1,1); // for Arduino ATmega
+    if(rc==0) {
+  		Serial.print("addr: ");
+  		Serial.print(addr,DEC);
+  		Serial.print("\t 7HEX: 0x");
+  		Serial.print(addr,HEX);
+  		Serial.print("\t 8HEX: 0x");
+  		Serial.print(addr<<1,HEX);
+  		Serial.println("\t found!");
+	  }
+  }
+}
+
+
+// standard Arduino setup()
+void setup()
+{
+    pinMode(pinLED,OUTPUT);
+    Wire.begin();
+
+    Serial.begin(9600);
+    delay(5000);
+    
+    Serial.println("--- I2C Bus Scanner Test ---");
+    Serial.print("starting scanning of I2C bus from ");
+    Serial.print(start_address,DEC);
+    Serial.print(" to ");
+    Serial.print(end_address,DEC);
+    Serial.println("...");
+    Serial.println();
+
+    scanI2CBus( start_address, end_address );
+
+    Serial.print("\n");
+    Serial.println("--- I2C Bus Scanner Complete ---");
+}
+
+void loop() 
+{
+
+  Serial.print("ADC : ");
+  Serial.println(analogRead(A0));
+    
+  digitalWrite(pinLED,HIGH); 
+  delay(500); 
+  digitalWrite(pinLED,LOW); 
+  delay(500);
+}
